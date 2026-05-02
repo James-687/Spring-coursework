@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>{{ technology.name }}</h1>
+    <p>Taught: {{ technology.taught }}</p>
+    <p>{{ technology.description }}</p>
+    What do you think?     
+    <form action="" method="post">
+        {{ form.opinion.label_tag }} {{ form.opinion }}
+        {{ form.submit() }}
+        {{ form.hidden_tag() }}
+    </form>
+</body>
+</html>
