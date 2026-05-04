@@ -21,7 +21,6 @@ def singleProductPage(techId):
     technology = Technology.query.get_or_404(techId)
     form = OpinionForm()
     if form.validate_on_submit():
-        # Handle opinion submission if needed
         pass
     return render_template('SingleTech.html', technology=technology, form=form)
 
@@ -42,7 +41,6 @@ def add_to_basket(techId):
     # Check if item already in basket
     for item in session['basket']:
         if item['id'] == techId:
-            # Item already in basket, don't add duplicate
             break
     else:
         session['basket'].append(basket_item)
