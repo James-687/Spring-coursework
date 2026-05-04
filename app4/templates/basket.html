@@ -6,8 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <div class="layout">
+        <div class="sidebar">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/basket">View Basket</a></li>
+            </ul>
+        </div>
+        <div class="right-section">
+            <div class="header">
     <h1>Your Basket</h1>
-    <button onclick="window.location.href='/'">Continue Shopping</button>
     
     {% if basket_items %}
         <ul>

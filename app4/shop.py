@@ -30,7 +30,7 @@ def add_to_basket(techId):
         session['basket'] = []
     
     technology = Technology.query.get_or_404(techId)
-    image_map = {'Headphones': 'headphones.jpg', 'Speakers': 'speakers.jpg', 'Earphones': 'earphones.jpg'}
+    image_map = {'Headphones': 'headphones.jpg', 'Speakers': 'speakers.jpg', 'Earphones': 'earphones.jpg', 'Smartphone': 'smartphone.jpg', 'Laptop': 'laptop.jpg', 'Tablet': 'tablet.jpg', 'Smartwatch': 'smartwatch.jpg', 'Gaming Console': 'gaming_console.jpg', 'Camera': 'camera.jpg'}
     basket_item = {
         'id': technology.id,
         'name': technology.name,
