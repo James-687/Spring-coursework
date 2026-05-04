@@ -2,16 +2,17 @@
 <html>
 <head>
     <title>{{ technology.name }} - Your Opinion</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <h1>{{ technology.name }}</h1>
     <p>Price: {{ technology.price }}</p>
     <p>{{ technology.description }}</p>
-    <img src="/static/{{ technology.image }}" alt="{{ technology.name }}" width="200">
+    <img src="/static/{{ {'Headphones': 'headphones.jpg', 'Speakers': 'speaker.jpg', 'Earphones': 'earphones.jpg'}[technology.name] }}" alt="{{ technology.name }}" width="200">
     <br><br>
     <h2>Your Opinion:</h2>
     <p>{{ opinion }}</p>
     <br>
-    <a href="/tech/{{ techId }}">Back to Product</a> | <a href="/">Back to Gallery</a>
+    <button onclick="window.location.href='/tech/{{ techId }}'">Back to Product</button> | <button onclick="window.location.href='/'">Back to Gallery</button>
 </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Basket</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Your Basket</h1>
+    <button onclick="window.location.href='/'">Continue Shopping</button>
+    
+    {% if basket_items %}
+        <ul>
+            {% for item in basket_items %}
+                <li>
+                    <h3>{{ item.name }}</h3>
+                    <p>Price: {{ item.price }}</p>
+                    <img src="/static/{{ item.image }}" alt="{{ item.name }}" width="100">
+                    <button onclick="window.location.href='/remove_from_basket/{{ item.id }}'">Remove from Basket</button>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total items: {{ basket_items|length }}</p>
+    {% else %}
+        <p>Your basket is empty.</p>
+    {% endif %}
+</body>
+</html>

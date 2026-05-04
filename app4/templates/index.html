@@ -2,17 +2,19 @@
 <html>
 <head>
     <title>Web Development Technologies</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <h1>Web development technologies</h1>
+    <button onclick="window.location.href='/basket'">View Basket</button>
     <ul>
         {% for tech in technologies %}
             <li>
                 <h2>{{ tech.name }}</h2>
                 <p>Price: {{ tech.price }}</p>
-                <p>{{ tech.description }}</p>
-                <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ tech.name }}" width="200">
-                <a href="/tech/{{ loop.index0 }}">View Details</a>
+                <img src="/static/{{ {'Headphones': 'headphones.jpg', 'Speakers': 'speaker.jpg', 'Earphones': 'earphones.jpg'}[tech.name] }}" alt="{{ tech.name }}" width="200">
+                <button onclick="window.location.href='/tech/{{ tech.id }}'">View Details</button>
+                <button onclick="window.location.href='/add_to_basket/{{ tech.id }}'">Add to Basket</button>
             </li>
         {% endfor %}
     </ul>
