@@ -14,6 +14,7 @@ class Technology(db.Model):
     name = db.Column(db.String(16), index=True, unique=True)
     price = db.Column(db.String(32))
     description = db.Column(db.Text)
+    enviromentalImpact = db.Column(db.String(16))
     
 @app.route('/')
 def index():

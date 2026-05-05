@@ -21,7 +21,7 @@ def singleProductPage(techId):
     technology = Technology.query.get_or_404(techId)
     form = OpinionForm()
     if form.validate_on_submit():
-        pass
+        return render_template('SingleTechOpinion.html', technology=technology, opinion=form.opinion.data, techId=techId)
     return render_template('SingleTech.html', technology=technology, form=form)
 
 @app.route('/add_to_basket/<int:techId>')
@@ -35,7 +35,8 @@ def add_to_basket(techId):
         'id': technology.id,
         'name': technology.name,
         'price': technology.price,
-        'image': image_map.get(technology.name, f"{technology.name.lower()}.jpg")
+        'image': image_map.get(technology.name, f"{technology.name.lower()}.jpg"),
+        'enviromentalImpact': technology.enviromentalImpact
     }
     
     # Check if item already in basket
@@ -51,7 +52,8 @@ def add_to_basket(techId):
 @app.route('/basket')
 def view_basket():
     basket_items = session.get('basket', [])
-    return render_template('basket.html', basket_items=basket_items)
+    total = sum(float(item['price'].replace('$', '')) for item in basket_items)
+    return render_template('basket.html', basket_items=basket_items, total=total)
 
 @app.route('/remove_from_basket/<int:techId>')
 def remove_from_basket(techId):
@@ -59,6 +61,17 @@ def remove_from_basket(techId):
         session['basket'] = [item for item in session['basket'] if item['id'] != techId]
         session.modified = True
     return redirect(url_for('view_basket'))
+
+@app.route('/checkout')
+def checkout():
+    basket_items = session.get('basket', [])
+    total = sum(float(item['price'].replace('$', '')) for item in basket_items)
+    return render_template('checkout.html', basket_items=basket_items, total=total)
+
+@app.route('/complete_purchase')
+def complete_purchase():
+    session.pop('basket', None)
+    return render_template('purchase_complete.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

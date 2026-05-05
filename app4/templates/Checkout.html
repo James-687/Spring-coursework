@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Your Basket</title>
-    <link rel="stylesheet" href="/static/shopCSS.css">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/static/shopCSS.css">
 </head>
 <body>
     <div class="layout">
@@ -16,24 +17,27 @@
         </div>
         <div class="right-section">
             <div class="header">
-    <h1>Your Basket</h1>
-    
+    <h1>Checkout</h1>
+
     {% if basket_items %}
+        <h2>Your Order Summary</h2>
         <ul>
             {% for item in basket_items %}
                 <li>
                     <h3>{{ item.name }}</h3>
                     <p>Price: {{ item.price }}</p>
+                    <p>Environmental Impact: {{ item.enviromentalImpact }}</p>
                     <img src="/static/{{ item.image }}" alt="{{ item.name }}" width="100">
-                    <button onclick="window.location.href='/remove_from_basket/{{ item.id }}'">Remove from Basket</button>
                 </li>
             {% endfor %}
         </ul>
-        <p>Total items: {{ basket_items|length }}</p>
-        <p>Total price: ${{ "%.2f"|format(total) }}</p>
+        <h3>Total: ${{ "%.2f"|format(total) }}</h3>
+        <button onclick="window.location.href='/complete_purchase'">Complete Purchase</button>
+        
+        <br><br>
+        <button onclick="window.location.href='/basket'">Back to Basket</button>
     {% else %}
-        <p>Your basket is empty.</p>
+        <p>Your basket is empty. <a href="/">Continue shopping</a></p>
     {% endif %}
-    <button onclick="window.location.href='/checkout'">Proceed to Checkout</button>
 </body>
 </html>
